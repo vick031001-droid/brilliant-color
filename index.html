@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#233eaa">
+<title>BC-6 Order Planner · Brilliant Color</title>
+<style>
+:root{color-scheme:light;--paper:#f8f9f6;--ink:#172722;--muted:#52625b;--line:#d6dfd7;--blue:#253fa9;--soft:#e9edfc;--mint:#d8ebdf;--danger:#952f25;font-family:Inter,"Helvetica Neue",Arial,sans-serif;font-size:16px}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);line-height:1.5}button,input{font:inherit}button{cursor:pointer}button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid #cb7831;outline-offset:3px}button{touch-action:manipulation}.shell{width:min(1160px,calc(100% - 72px));margin:auto}.topbar{background:white;border-bottom:1px solid var(--line)}.topbar .shell{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:inline-flex;gap:12px;align-items:center;font-size:1.22rem;font-weight:740;letter-spacing:-.035em}.brandmark{display:inline-flex;gap:2px;align-items:center;transform:skew(-15deg);margin:0 3px}.brandmark i{width:7px;height:24px;background:#354fc2}.brandmark i:nth-child(2){background:#e99569}.brandmark i:nth-child(3){background:#7eac91}.help-button{display:flex;align-items:center;gap:7px;color:var(--ink);background:white;border:1px solid #c8d2cc;border-radius:30px;padding:7px 14px;font-size:.88rem;font-weight:620}.help-icon{display:inline-grid;place-items:center;border:1.4px solid currentColor;border-radius:50%;width:16px;height:16px;font-size:11px;line-height:1;font-weight:700}.help-button:hover,.reset:hover{background:#f2f5f1}
+main{padding:40px 0 60px}.intro{margin-bottom:25px}h1,h2,h3,p,fieldset,legend{margin:0}h1{font-size:clamp(2.5rem,4.8vw,4rem);line-height:1.07;letter-spacing:-.04em;font-weight:640}.intro p{color:var(--muted);margin-top:10px;font-size:1.06rem}.layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(315px,1fr);align-items:start;gap:22px}.results{display:grid;gap:18px;min-width:0}.panel{border:1px solid var(--line);border-radius:15px;background:white}.recommend{position:relative;isolation:isolate;overflow:hidden;background:var(--blue);color:white;padding:25px 28px 24px;border-radius:15px}.eyebrow,.section-label{font-size:.76rem;font-weight:750;letter-spacing:.085em;text-transform:uppercase}.recommend .eyebrow{color:#dce5ff}.recommend h2{position:relative;font-size:clamp(2.35rem,4.5vw,3.7rem);line-height:1.03;margin:12px 0 20px;letter-spacing:-.04em;max-width:75%;overflow-wrap:anywhere}.recommend h2 span{font-size:.49em;font-weight:500;letter-spacing:-.04em}.hero-bottom{display:flex;align-items:baseline;flex-wrap:wrap;gap:3px 12px;border-top:1px solid #ffffff40;padding-top:15px;position:relative}.hero-bottom b{font-size:1.65rem;line-height:1.15;letter-spacing:-.025em;font-variant-numeric:tabular-nums}.hero-bottom span{font-size:.89rem;color:#e0e8ff}.swatches{position:absolute;z-index:-1;right:26px;top:21px;height:101px;width:106px;pointer-events:none}.swatches i{position:absolute;bottom:0;left:18px;width:36px;height:100px;background:linear-gradient(to bottom,#f5b08e 0 31%,#ef9468 31% 62%,#db7955 62% 84%,#f7dfcb 84%);border-radius:3px;transform-origin:50% 90%;transform:rotate(-19deg);box-shadow:1px 1px 3px #14205e42}.swatches i:nth-child(2){background:linear-gradient(to bottom,#e2efd1 0 31%,#b4d8b5 31% 62%,#8eba9f 62% 84%,#dbeadc 84%);transform:rotate(7deg)}.swatches i:nth-child(3){background:linear-gradient(to bottom,#d5defb 0 31%,#a9bafa 31% 62%,#7e98e6 62% 84%,#e1e7fb 84%);transform:rotate(34deg)}.swatches i:last-child:after{content:"";position:absolute;width:5px;height:5px;background:#596b97;border-radius:50%;left:15px;bottom:6px}
+h2.title{font-size:1.35rem;letter-spacing:-.04em;line-height:1.25}.comparison,.inputs{padding:22px 24px}.sub,.note{color:var(--muted);font-size:.9rem}.sub{margin-top:4px}.compare-table{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums;margin-top:14px}.compare-table th,.compare-table td{padding:10px 0;border-top:1px solid #e7ece7}.compare-table thead th{border-top:0;font-size:.82rem;font-weight:580;color:var(--muted)}.compare-table th{text-align:left}.compare-table td:last-child,.compare-table thead th:last-child{text-align:right}.compare-table tbody th{font-size:.95rem;white-space:nowrap;font-weight:570}.compare-table td:last-child{font-size:1rem;font-weight:620;white-space:nowrap}.q-col{width:26%}.money-col{width:32%}.compare-table .bar-cell{padding:0 14px 0 0}.plot{position:relative;height:10px;border-radius:2px;background:#f0f2ef;overflow:hidden}.bar{position:absolute;top:0;bottom:0;background:#9db7ac;border-radius:2px}.leader .bar{background:var(--blue)}.leader th,.leader td:last-child{color:var(--blue)}.axis{position:absolute;top:0;bottom:0;border-left:1px solid #65766d}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.reset,.close{background:white;color:var(--blue);border:1px solid var(--line);border-radius:7px;font-size:.83rem;font-weight:600;padding:5px 10px;min-height:33px}.group{margin:18px 0 0;padding:0;border:0;min-width:0}.group + .group{padding-top:17px;border-top:1px solid var(--line)}.group .section-label{color:#4e6257;margin-bottom:8px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label,.prob-field label{display:block;font-size:.88rem;font-weight:590;margin:0 0 5px}.input-wrap{display:flex;align-items:center;border:1px solid #bfcac2;border-radius:7px;background:#fff;min-width:0;gap:5px;padding:0 10px}.input-wrap span{color:var(--muted)}.input-wrap:focus-within{border-color:var(--blue)}input{display:block;width:100%;min-width:0;height:39px;padding:6px 7px;border-radius:7px;border:1px solid #bfcac2;background:#fff;color:var(--ink);font-size:1rem;font-variant-numeric:tabular-nums}.input-wrap input{border:0;padding:6px 0}.input-wrap:has([aria-invalid="true"]),input[aria-invalid="true"]{border-color:var(--danger);background:#fff7f5}.choice{display:grid;grid-template-columns:1fr 1fr;background:#eff2ee;border-radius:8px;padding:3px;gap:4px}.choice button{border:1px solid transparent;background:transparent;padding:7px 2px;border-radius:6px;color:#46584f;font-size:.9rem;font-weight:640}.choice button[aria-pressed="true"]{background:white;color:var(--blue);border:1px solid #c6d0e2;box-shadow:0 1px 2px #152f4720}.note{font-size:.83rem;margin-top:7px}.prob-inputs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.total{margin-top:11px;display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:.85rem;color:var(--muted)}.total output{font-weight:700;color:var(--ink)}.error{margin-top:12px;background:#fff2ea;color:#853b22;border-radius:7px;padding:8px 10px;font-size:.89rem}.error[hidden]{display:none}
+.breakdown{padding:0 24px}.breakdown summary{display:flex;align-items:center;gap:10px;justify-content:space-between;font-size:1rem;font-weight:640;letter-spacing:-.015em;cursor:pointer;list-style:none;padding:15px 0}.breakdown summary::-webkit-details-marker{display:none}.breakdown summary:after{content:'+';font-size:1.3rem;line-height:1;color:var(--blue);font-weight:400}.breakdown[open] summary:after{content:'−'}.breakdown[open]{padding-bottom:18px}.scroll{overflow-x:auto}.matrix{width:100%;border-collapse:collapse;font-size:.86rem;font-variant-numeric:tabular-nums;margin-top:12px}.matrix th,.matrix td{padding:8px 4px;border-top:1px solid var(--line);text-align:right;white-space:nowrap}.matrix th:first-child{text-align:left}.matrix thead th{color:var(--muted);font-weight:600}.matrix small{display:block;font-size:.76rem;font-weight:450}.matrix .best-row{color:var(--blue)}.empty{color:var(--muted);padding:20px 0 5px}.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.method{width:min(520px,calc(100% - 28px));max-height:85vh;overflow:auto;border:1px solid var(--line);border-radius:15px;padding:25px;color:var(--ink);box-shadow:0 14px 80px #1a332631}.method::backdrop{background:#10232077}.method p{margin-top:12px}.method h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.045em;margin-top:20px}.formula{background:#edf3ef;border-radius:8px;padding:12px 14px;font-size:.96rem}.method .example{font-variant-numeric:tabular-nums}.close{font-size:.9rem}.noscript{padding:12px;background:#fff2ed}
+@media(min-width:1250px){main{padding-top:48px}.intro{margin-bottom:30px}.recommend{padding:28px 30px}.comparison,.inputs{padding:24px 26px}}
+@media(max-width:820px){.shell{width:calc(100% - 36px)}.layout{gap:14px;grid-template-columns:minmax(0,1.15fr) minmax(280px,1fr)}.recommend,.comparison,.inputs{padding:19px 16px}.breakdown{padding:0 16px}.swatches{transform:scale(.76);transform-origin:top right;right:12px;top:16px}.money-col{width:37%}.compare-table .bar-cell{padding-right:7px}}
+@media(max-width:680px){main{padding-top:26px}.layout{display:flex;flex-direction:column;gap:14px}.results{display:contents}.recommend,.comparison,.inputs,.breakdown{width:100%}.recommend{order:0}.inputs{order:2}.comparison{order:1}.breakdown{order:3}.topbar .shell{height:59px}.intro{margin-bottom:18px}.intro p{font-size:.97rem}.shell{width:calc(100% - 28px)}.swatches{transform:scale(.73)}.hero-bottom{padding-top:12px}.money-col{width:37%}.compare-table tbody th,.compare-table td:last-child{font-size:.94rem}.comparison,.inputs{padding:18px}.recommend h2{font-size:2.7rem;margin:11px 0 18px}.recommend .eyebrow{font-size:.7rem}.matrix{font-size:.8rem}.brand{font-size:1.06rem}.help-button{padding:7px 10px}.method{padding:18px}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="shell"><div class="brand"><span class="brandmark" aria-hidden="true"><i></i><i></i><i></i></span>Brilliant Color</div><button class="help-button" id="help" type="button"><span class="help-icon" aria-hidden="true">?</span>How it works</button></div></header>
+<main class="shell">
+<header class="intro"><h1>BC-6 order planner</h1><p>Compare weekly paint orders and choose the quantity with the highest expected profit.</p></header>
+<noscript><p class="noscript">Enable JavaScript to calculate expected profits.</p></noscript>
+<div class="layout">
+<div class="results">
+<section class="recommend" aria-label="Weekly recommendation" aria-live="polite" aria-atomic="true"><div class="swatches" aria-hidden="true"><i></i><i></i><i></i></div><p class="eyebrow" id="recommendLabel">Recommended order</p><h2 id="orderValue">—</h2><div class="hero-bottom"><b id="profitValue">—</b><span>expected weekly profit</span></div></section>
+<section class="panel comparison"><h2 class="title">Order comparison</h2><p class="sub">Expected weekly profit at each order quantity.</p><p class="empty" id="noComparison" hidden>Results will appear when the assumptions are valid.</p><table class="compare-table" id="comparison"><caption class="sr">Expected profit by order quantity</caption><colgroup><col class="q-col"><col><col class="money-col"></colgroup><thead><tr><th scope="col">Order</th><th scope="col"><span class="sr">Relative profit</span></th><th scope="col">Expected profit</th></tr></thead><tbody></tbody></table></section>
+<details class="panel breakdown" id="breakdown"><summary>Demand scenario breakdown</summary><p class="note" id="matrixNote">Weekly profit for each combination of order quantity and customer demand.</p><div class="scroll"><table class="matrix" id="matrix"><caption class="sr">Profit by order quantity and demand, with each demand probability</caption><thead></thead><tbody></tbody></table></div></details>
+</div>
+<aside class="panel inputs" aria-labelledby="assumptions"><div class="section-head"><h2 class="title" id="assumptions">Assumptions</h2><button class="reset" id="reset" type="button">Reset</button></div>
+<section class="group" aria-labelledby="econ"><h3 class="section-label" id="econ">Price per case</h3><div class="fields"><div class="field"><label for="price">Selling price</label><div class="input-wrap"><span aria-hidden="true">$</span><input type="number" id="price" value="100" min="0" step="0.01" inputmode="decimal"></div></div><div class="field"><label for="cost">Purchase cost</label><div class="input-wrap"><span aria-hidden="true">$</span><input type="number" id="cost" value="25" min="0" step="0.01" inputmode="decimal"></div></div></div></section>
+<section class="group" aria-labelledby="returnTitle"><h3 id="returnTitle" class="section-label">Unsold cases</h3><div class="choice" role="group" aria-labelledby="returnTitle"><button type="button" id="noReturn" aria-pressed="true">No return</button><button type="button" id="withReturn" aria-pressed="false">$5 return</button></div><p class="note" id="returnNote">Unsold cases have no remaining value.</p></section>
+<section class="group" aria-labelledby="probs"><h3 id="probs" class="section-label">Weekly demand probabilities</h3><div class="prob-inputs"><div class="prob-field"><label for="prob100">100 cases</label><input id="prob100" type="text" value="1/3" aria-describedby="probHint" autocomplete="off" spellcheck="false"></div><div class="prob-field"><label for="prob200">200 cases</label><input id="prob200" type="text" value="1/3" aria-describedby="probHint" autocomplete="off" spellcheck="false"></div><div class="prob-field"><label for="prob300">300 cases</label><input id="prob300" type="text" value="1/3" aria-describedby="probHint" autocomplete="off" spellcheck="false"></div></div><p class="note" id="probHint">Use fractions (1/3), decimals (0.5), or percentages (50%).</p><div class="total"><span>Total probability</span><output id="total">100%</output></div></section>
+<p id="error" class="error" role="status" hidden></p>
+</aside></div></main>
+<dialog class="method" id="method" aria-labelledby="methodTitle"><div class="section-head"><h2 class="title" id="methodTitle">How it works</h2><button type="button" class="close" id="closeMethod" autofocus>Close</button></div><p>The manager orders 100, 200, or 300 cases before learning the week’s demand. Sales are limited by both the order and customer demand.</p><h3>Profit in one demand scenario</h3><p class="formula">Cases sold × selling price<br>+ unsold cases × return credit<br>− cases ordered × purchase cost</p><h3>Expected weekly profit</h3><p>Multiply each scenario’s profit by its probability and add the three amounts. The order with the largest total is recommended. Tied orders are shown together.</p><h3>Worked example · 200-case order</h3><p class="example" id="example"></p></dialog>
+<script>
+'use strict';
+const quantities = [100, 200, 300];
+const byId = id => document.getElementById(id);
+const probabilities = quantities.map(q => byId(`prob${q}`));
+const sale = byId('price'), cost = byId('cost');
+const dollars = new Intl.NumberFormat('en-US', {style:'currency', currency:'USD', minimumFractionDigits:2, maximumFractionDigits:2});
+const percent = new Intl.NumberFormat('en-US', {style:'percent', maximumFractionDigits:6});
+let returnCredit = 0;
+function money(amount) {
+  const rounded = Math.round((Math.abs(amount) + Number.EPSILON) * 100) / 100;
+  return dollars.format(rounded === 0 ? 0 : Math.sign(amount) * rounded).replace(/\.00$/, '');
+}
+function probability(raw) {
+  const value = raw.trim();
+  const fraction = /^(\d+)\s*\/\s*(\d+)$/.exec(value);
+  if (fraction) return Number(fraction[1]) / Number(fraction[2]);
+  if (!/^(?:\d+(?:\.\d*)?|\.\d+)\s*%?$/.test(value)) return NaN;
+  return value.endsWith('%') ? Number(value.slice(0,-1)) / 100 : Number(value);
+}
+function resetInputs() {
+  sale.value = '100'; cost.value = '25';
+  probabilities.forEach(input => { input.value = '1/3'; });
+  returnCredit = 0;
+  render();
+}
+function scenarioProfit(order, demand, sellingPrice, purchaseCost) {
+  const sold = Math.min(order, demand);
+  return sold * sellingPrice + (order - sold) * returnCredit - order * purchaseCost;
+}
+function compareOrders(rows, best) {
+  const highest = Math.max(0, ...rows.map(row => row.mean));
+  const lowest = Math.min(0, ...rows.map(row => row.mean));
+  const range = highest - lowest || 1;
+  const zero = -lowest / range * 100;
+  const tbody = byId('comparison').tBodies[0];
+  tbody.replaceChildren();
+  for (const row of rows) {
+    const tr = tbody.insertRow();
+    if (best.includes(row)) tr.className = 'leader';
+    const start = (Math.min(0,row.mean) - lowest) / range * 100;
+    const width = Math.abs(row.mean) / range * 100;
+    tr.innerHTML = `<th scope="row">${row.order} cases</th><td class="bar-cell"><div class="plot" aria-hidden="true"><span class="bar" style="left:${start}%;width:${width}%"></span>${lowest < 0 && highest > 0 ? `<span class="axis" style="left:${zero}%"></span>` : ''}</div></td><td>${money(row.mean)}</td>`;
+  }
+}
+function showMatrix(rows, weights, best) {
+  const table = byId('matrix');
+  table.tHead.innerHTML = `<tr><th scope="col">Order</th>${quantities.map((q,i) => `<th scope="col">${q} demand<small>${percent.format(weights[i])}</small></th>`).join('')}</tr>`;
+  table.tBodies[0].innerHTML = rows.map(row => `<tr class="${best.includes(row) ? 'best-row' : ''}"><th scope="row">${row.order} cases</th>${row.payoffs.map(value => `<td>${money(value)}</td>`).join('')}</tr>`).join('');
+}
+function render() {
+  byId('noReturn').setAttribute('aria-pressed', String(returnCredit === 0));
+  byId('withReturn').setAttribute('aria-pressed', String(returnCredit === 5));
+  byId('returnNote').textContent = returnCredit ? 'The supplier refunds $5 for each unsold case.' : 'Unsold cases have no remaining value.';
+  const weights = probabilities.map(input => probability(input.value));
+  const sum = weights.reduce((total, p) => total + p, 0);
+  const validWeights = weights.map(p => Number.isFinite(p) && p >= 0 && p <= 1);
+  probabilities.forEach((input, i) => input.setAttribute('aria-invalid', String(!validWeights[i])));
+  byId('total').textContent = validWeights.every(Boolean) ? percent.format(sum) : '—';
+  const validPrices = [sale,cost].map(input => {
+    const valid = input.value !== '' && input.validity.valid && Number.isFinite(input.valueAsNumber) && Number.isSafeInteger(Math.round(input.valueAsNumber * 100) * 300);
+    input.setAttribute('aria-invalid', String(!valid));
+    return valid;
+  });
+  let message = '';
+  if (!validPrices.every(Boolean)) message = 'Enter a valid nonnegative dollar amount in each price field, using at most two decimal places.';
+  else if (!validWeights.every(Boolean)) message = 'Each demand probability must be between 0 and 1 (or 0% and 100%).';
+  else if (Math.abs(sum - 1) > 1e-12) message = 'Adjust the demand probabilities so they add up to 100%. Use 1/3 for exact equal chances.';
+  byId('error').hidden = !message;
+  byId('error').textContent = message;
+  byId('comparison').hidden = Boolean(message);
+  byId('matrix').hidden = Boolean(message);
+  byId('noComparison').hidden = !message;
+  byId('matrixNote').textContent = message ? 'Correct the assumptions to view scenario profits.' : 'Weekly profit for each combination of order quantity and customer demand.';
+  if (message) {
+    byId('recommendLabel').textContent = 'Check assumptions';
+    byId('orderValue').textContent = '—'; byId('profitValue').textContent = '—';
+    byId('example').textContent = 'Correct the assumptions to see the worked example.';
+    return;
+  }
+  const rows = quantities.map(order => {
+    const payoffs = quantities.map(demand => scenarioProfit(order, demand, sale.valueAsNumber, cost.valueAsNumber));
+    const mean = payoffs.reduce((total, value, i) => total + value * weights[i], 0);
+    return {order, payoffs, mean};
+  });
+  const maximum = Math.max(...rows.map(row => row.mean));
+  const scale = Math.max(1, ...rows.flatMap(row => row.payoffs.map(Math.abs)));
+  const best = rows.filter(row => Math.abs(row.mean - maximum) <= 8 * Number.EPSILON * scale);
+  byId('recommendLabel').textContent = best.length > 1 ? 'Tied best orders' : 'Recommended order';
+  byId('orderValue').innerHTML = best.map(row => row.order).join(' / ') + ' <span>cases</span>';
+  byId('profitValue').textContent = money(maximum);
+  compareOrders(rows, best);
+  showMatrix(rows, weights, best);
+  const example = rows[1];
+  byId('example').textContent = 'For demand of 100, 200, and 300 cases respectively, the weighted calculation is ' + example.payoffs.map((value,i) => `${money(value)} × ${probabilities[i].value.trim()}`).join(' + ') + ` = ${money(example.mean)} in expected weekly profit.`;
+}
+[...probabilities, sale, cost].forEach(input => input.addEventListener('input', render));
+byId('noReturn').addEventListener('click', () => { returnCredit = 0; render(); });
+byId('withReturn').addEventListener('click', () => { returnCredit = 5; render(); });
+byId('reset').addEventListener('click', resetInputs);
+byId('help').addEventListener('click', () => byId('method').showModal());
+byId('closeMethod').addEventListener('click', () => byId('method').close());
+render();
+</script>
+</body>
+</html>
